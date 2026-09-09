@@ -33,9 +33,7 @@ Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank o
 ### Requirements:
 R version 4.x or higher
 Packages: quantmod, timeSeries, tseries, rugarch, mfx, zoo, fBasics
-*Code to install necessary packages:* 
-
-install.packages(c("quantmod", "timeSeries", "tseries", "rugarch",
+*Code to install necessary packages:* install.packages(c("quantmod", "timeSeries", "tseries", "rugarch",
                     "mfx", "zoo", "fBasics")) 
 
 ### Getting Data:
