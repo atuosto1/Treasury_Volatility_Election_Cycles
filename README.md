@@ -4,7 +4,7 @@ This project sought to tackle whether U.S. general presidential election years a
 ## Overview
 This project examines daily Treasury yield data across three maturities (3-month, 1-year, and 10-year) from 1981 to 2025 to test whether presidential election years are associated with elevated yield volatility. Using a probit regression with marginal effects, and two-sample t-tests, I estimate the standalone effect of an election-year dummy on volatility at each tenor while controlling for NBER recessions and USD/EUR exchange rate movements. I then forecast 365-day forward volatility for both the 10-year and 1-year treasury securities using a GJR-GARCH volatility model. Results suggest that election years do not meaningfully increase Treasury volatility at any tenor once these macro controls are in place. The results also suggest that recessions are the dominant driver of extreme volatility events.
 
-*Code was debugged with the assistance of AI tools; all research design, modeling choices, and interpretation of results are my own.*
+*Code was debugged with the assistance of AI tools (Claude, Gemini); all research design, modeling choices, and interpretation of results are my own.*
 
 ## Data
 ### Source: 
