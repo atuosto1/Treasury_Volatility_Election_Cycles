@@ -31,10 +31,15 @@ Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank o
 
 ## How to Reproduce
 ### Requirements:
-- R/Rstudio
-- R Packages
+R version 4.x or higher
+Packages: quantmod, timeSeries, tseries, rugarch, mfx, zoo, fBasics
+*Code to install necessary packages:* 
+install.packages(c("quantmod", "timeSeries", "tseries", "rugarch",
+                    "mfx", "zoo", "fBasics")) 
+
 ### Getting Data:
-Ensure Packages are installed in R and use getSymbols()
+
+No manual downloads are needed to get data. Running source("FinalProject.R") calls getSymbols() directly against FRED for DGS10, DGS1, DGS3MO, USREC, and DEXUSEU, so the script will automatically pick up new daily observations as they're published. Presidential election years are hardcoded as a vector (1980–2024) directly in the script, since Britannica's election-date list isn't available as a structured data feed.
 
 ## Methodology
 Screenshots contain code for different tenors, but the process is the same for all three.
@@ -108,21 +113,12 @@ To begin the volatility plots I took the annualized, trailing 30-day moving stan
 
 #### Screenshot 7.2
 
+## Findings:
+When looking at the results for each of probit regressions and their respective marginal effects outputs, the only statistically significant result for the election year variable is within the 10-year Treasury. In this regression, election years' effect is statistically significant at the 5% level and actually contradicts my initial hypothesis: it reveals that, on average, election years decrease the probability that a day's return will be greater than 2 standard deviations, by around 5% (See slide 37 in presentation for entire table output). 1-year Treasuries experience the same directional relationship as the 10-year, however the magnitude of this relationship is much lower, only around a 1% decrease in volatility for election years, and is highly statistically insignificant even if we expand our scope to the 10% significance level (p-value is .68, much higher than 0.1). The 3-month probit is once more statistically insignificant yet reverses the relationship faced by the other two tenors; the 3-month probit shows that, on average, an election year has a 7% higher probability of having a return more than 2 standard deviations, if we were to interpret it as significant. The results from the probits ultimately show that any effects that elections have on volatility are largely concentrated in shorter-dated measures, despite little significance.
 
-## How to Reproduce
-### Requirements:
-R version 4.x or higher
-Packages: quantmod, timeSeries, tseries, rugarch, mfx, zoo, fBasics
-*Code to install necessary packages:* 
-install.packages(c("quantmod", "timeSeries", "tseries", "rugarch",
-                    "mfx", "zoo", "fBasics")) 
+The Welch Two-Sample t-Tests reveal the same truths as the probit regressions when measuring the difference in means. The p-values for each tenor are as follows: 10-year = 0.134, 1-year = 0.93, 3-Month = 0.20. The lack of statistical significance within these tests signifies that the difference in mean volatility between election and non-election years cannot be attributed to anything but random noise.
 
-
-
-### Getting Data:
-
-No manual downloads are needed to get data. Running source("FinalProject.R") calls getSymbols() directly against FRED for DGS10, DGS1, DGS3MO, USREC, and DEXUSEU, so the script will automatically pick up new daily observations as they're published. Presidential election years are hardcoded as a vector (1980–2024) directly in the script, since Britannica's election-date list isn't available as a structured data feed.
-
+Additionally, the GJR-GARCH forecasts for 10-year and 1-year annualized volatility echo the trend from both the regressions and the t-tests. Forecasts for 1-year annualize at a value just shy of 2% (0.019) and 10-year forecasts are extremely low, less than 1% (0.0092). This can be seen on the volatility plots as well, as the forecast for 1-year is on a clear upward trend (green line, slide 29) while the same forecast for 10-year treasuries look nearly flat (red line, slide 28). Additionally there are fewer large spikes on the 10-year plot compared to the 1-year, echoing the sentiment from above in a graphical way.
 
 ## Planned Extensions
 For the future, I'd like to add a few additional controls and refine the measured window from 1 year to a timeframe closer to political elections. In the future I would control for the following variables, hypotheses included:
