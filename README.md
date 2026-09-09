@@ -8,7 +8,7 @@ This project examines daily Treasury yield data across three maturities (3-month
 
 ## Data
 ### Source: 
-Federal Reserve Bank of St. Louis, Federal Reserve Economic Data (FRED). Data was pulled directly from FRED via R package quantmod (getSymbols()). General Presidential election dates sourced from Encyclopædia Britannica. [Link to FRED](https://fred.stlouisfed.org/)
+Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank of St. Louis. Data was pulled directly from FRED via R package quantmod (getSymbols()). General Presidential election dates sourced from Encyclopædia Britannica. [Link to FRED](https://fred.stlouisfed.org/) [Link to Encyclopædia Britannica](https://www.britannica.com/topic/United-States-Presidential-Election-Results-1788863)
 ### Time Period:
 1981 to 2025 (bounded by the 3-month yield series, DGS3MO, which is the shortest available history among the three tenors)
 ### Key Variables:
@@ -109,7 +109,28 @@ To begin the volatility plots I took the annualized, trailing 30-day moving stan
 #### Screenshot 7.2
 
 
-### How to Reproduce
-Requirements:
+## How to Reproduce
+### Requirements:
 R version 4.x or higher
 Packages: quantmod, timeSeries, tseries, rugarch, mfx, zoo, fBasics
+*Code to install necessary packages:* 
+install.packages(c("quantmod", "timeSeries", "tseries", "rugarch",
+                    "mfx", "zoo", "fBasics")) 
+
+
+
+### Getting Data:
+
+No manual downloads are needed to get data. Running source("FinalProject.R") calls getSymbols() directly against FRED for DGS10, DGS1, DGS3MO, USREC, and DEXUSEU, so the script will automatically pick up new daily observations as they're published. Presidential election years are hardcoded as a vector (1980–2024) directly in the script, since Britannica's election-date list isn't available as a structured data feed.
+
+
+## Planned Extensions
+For the future, I'd like to add a few additional controls and refine the measured window from 1 year to a timeframe closer to political elections. In the future I would control for the following variables, hypotheses included:
+**Fed policy variables:** My hypothesis is that rate hikes/cuts drive far more Treasury volatility than the election cycle does, and including a Fed funds rate change variable may account for more variance within the probit models.
+**Candidate party affiliation** I hypothesize that markets may price uncertainty regarding trade or fiscal policy differences into their decisions, which simple binary election-year dummy can't capture. By splitting elections by expected policy direction could reveal an effect this specification misses. This could involve using projections for the popular vote or current standings.
+**VIX as an additional control:** Including the CBOE Volatility Index (VIX) as a proxy for market wide volatility fears may help show if Treasury volatility is being carried over from equity markets, or if volatility is specifically due to the presidential cycle.
+**Pre- vs. post-election windows:** Rather than treating the entire calendar year as "election year," I'd like to isolate the weeks immediately before and after the election itself, since I suspect any real volatility effect is more concentrated in window closer to a general election, but dissipates over the year.
+
+I would additionally rework this project to other countries, developed and developing, to see if this is a trend specifically in the United States, or if this is a trend within developed nations. I hypothesize that in developed nations this would be a similar pattern to the US, but may vary in developing nations. This same model can also be applied to other assets, and 
+
+This project was completed as a group final for Data Analysis in Finance (FIN 325) with five other researchers (Sonakshi Jain, Kenny Nguyen, Khadija Oussabban, Virginia Vaquero, and Lucas Zenobio). I served as lead researcher and designed the research question and project scope, wrote all of the R code for the analysis pipeline, and was responsible for quality control on the final statistical work and presentation. Data sourced from Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank of St. Louis. 
