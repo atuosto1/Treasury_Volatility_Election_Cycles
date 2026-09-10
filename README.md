@@ -14,19 +14,29 @@ Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank o
 ### Key Variables:
 #### Binary Dependent Variable:
 **more2vol -** binary indicator equal to 1 if a day's absolute return exceeds two standard deviations for **10-year Treasury**, 0 otherwise
+
 **more2vol1 -** binary indicator equal to 1 if a day's absolute return exceeds two standard deviations for **1-year Treasury**, 0 otherwise
+
 **more2vol3 -** binary indicator equal to 1 if a day's absolute return exceeds two standard deviations for **3-Month Treasury**, 0 otherwise
 
 #### Yields (Daily Value):
 **DGS10 -** 10 Year Treasury Yield
+
 **ret_DGS10 -** 10 Year Treasury Yield *return* calculated as the difference of yield within period t and t-1
+
 **DGS1 -** 1 Year Treasury Yield 
+
 **DGS1 -** 1 Year Treasury Yield *return* calculated as the difference of yield within period t and t-1
+
 **DGS3MO -** 3-Month Treasury Yield
+
 **DGS3MO -** 3-Month Treasury Yield *return* calculated as the difference of yield within period t and t-1
 #### Controls:
+
 **USREC -** NBER recession indicator, binary where 1 = Recession, 0 Otherwise (daily)
+
 **DEXUSEU -** USD/EUR exchange rate (daily)
+
 **election_dummy -** Yearly binary indicator, 1 = U.S. general presidential election year, 0 Otherwise (1980–2024)
 
 ## How to Reproduce
@@ -126,9 +136,13 @@ Additionally, the GJR-GARCH forecasts for 10-year and 1-year annualized volatili
 
 ## Planned Extensions
 For the future, I'd like to add a few additional controls and refine the measured window from 1 year to a timeframe closer to political elections. In the future I would control for the following variables, hypotheses included:
+
 **Fed policy variables:** My hypothesis is that rate hikes/cuts drive far more Treasury volatility than the election cycle does, and including a Fed funds rate change variable may account for more variance within the probit models.
+
 **Candidate party affiliation** I hypothesize that markets may price uncertainty regarding trade or fiscal policy differences into their decisions, which simple binary election-year dummy can't capture. By splitting elections by expected policy direction could reveal an effect this specification misses. This could involve using projections for the popular vote or current standings.
+
 **VIX as an additional control:** Including the CBOE Volatility Index (VIX) as a proxy for market wide volatility fears may help show if Treasury volatility is being carried over from equity markets, or if volatility is specifically due to the presidential cycle.
+
 **Pre- vs. post-election windows:** Rather than treating the entire calendar year as "election year," I'd like to isolate the weeks immediately before and after the election itself, since I suspect any real volatility effect is more concentrated in window closer to a general election, but dissipates over the year.
 
 I would additionally rework this project to other countries, developed and developing, to see if this is a trend specifically in the United States, or if this is a trend within developed nations. I hypothesize that in developed nations this would be a similar pattern to the US, but may vary in developing nations. This same model can also be applied to other financial assets and even currencies.
