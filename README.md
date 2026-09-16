@@ -37,7 +37,11 @@ Federal Reserve Economic Data (FRED®), maintained by the Federal Reserve Bank o
 
 **DEXUSEU -** USD/EUR exchange rate (daily)
 
-**election_dummy -** Yearly binary indicator, 1 = U.S. general presidential election year, 0 Otherwise (1980–2024)
+**election_dummy10 -** Yearly binary indicator, 1 = U.S. general presidential election year, 0 Otherwise (1980–2024)
+
+**election_dummy1 -** Yearly binary indicator, 1 = U.S. general presidential election year, 0 Otherwise (1980–2024)
+
+**election_dummy3 -** Yearly binary indicator, 1 = U.S. general presidential election year, 0 Otherwise (1980–2024)
 
 ## How to Reproduce
 ### Requirements:
